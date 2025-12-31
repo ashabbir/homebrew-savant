@@ -25,29 +25,11 @@ class SavantContext < Formula
     venv = virtualenv_create(libexec, "python3.10")
     venv.pip_install buildpath
 
-    # Stage and install the pinned embedding model into pkgshare
+    # Stage and install the pinned embedding model into pkgshare (no network fallback)
     model_target = pkgshare/"embeddings/models/stsb-distilbert-base"
-    begin
-      resource("embedding-model-stsb-distilbert-base").stage do
-        model_target.mkpath
-        model_target.install Dir["*"]
-      end
-    rescue => e
-      # Fallback: download from Hugging Face at a pinned revision
-      ohai "Model resource unavailable (#{e.class}). Falling back to Hugging Face."
+    resource("embedding-model-stsb-distilbert-base").stage do
       model_target.mkpath
-      py = <<~PY
-        import os
-        from huggingface_hub import snapshot_download
-        target = r"#{model_target}"
-        repo_id = os.environ.get("SAVANT_EMBEDDING_REPO", "#{PINNED_HF_REPO}")
-        revision = os.environ.get("SAVANT_EMBEDDING_REVISION", "#{PINNED_HF_REV}")
-        snapshot_download(repo_id=repo_id, revision=revision, local_dir=target, local_dir_use_symlinks=False)
-        with open(os.path.join(target, "REVISION"), "w", encoding="utf-8") as f:
-            f.write(revision + "\\n")
-      PY
-      (buildpath/"fetch_model.py").write(py)
-      system libexec/"bin/python", (buildpath/"fetch_model.py")
+      model_target.install Dir["*"]
     end
 
     # Wrap entry points to set the model directory for offline use
