@@ -10,6 +10,10 @@ class SavantContext < Formula
   depends_on "python@3.10"
   depends_on "postgresql@15"
 
+  # Pinned HF revision for fallback downloads (set a commit hash)
+  PINNED_HF_REPO = "sentence-transformers/stsb-distilbert-base"
+  PINNED_HF_REV  = "main" # TODO: set to a specific commit hash to pin
+
   # Pinned model resource (upload a tarball/zip and fill URL/SHA256)
   # Recommended: host on a GitHub release or in this tap repo.
   # Contents should be the unpacked model directory (e.g. stsb-distilbert-base/**).
@@ -39,8 +43,8 @@ class SavantContext < Formula
         import os
         from huggingface_hub import snapshot_download
         target = r"#{model_target}"
-        repo_id = os.environ.get("SAVANT_EMBEDDING_REPO", "sentence-transformers/stsb-distilbert-base")
-        revision = os.environ.get("SAVANT_EMBEDDING_REVISION", "main")
+        repo_id = os.environ.get("SAVANT_EMBEDDING_REPO", "#{PINNED_HF_REPO}")
+        revision = os.environ.get("SAVANT_EMBEDDING_REVISION", "#{PINNED_HF_REV}")
         snapshot_download(repo_id=repo_id, revision=revision, local_dir=target, local_dir_use_symlinks=False)
       PY
       system libexec/"bin/python", "-c", py
