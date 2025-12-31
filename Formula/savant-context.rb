@@ -10,18 +10,9 @@ class SavantContext < Formula
   depends_on "python@3.10"
   depends_on "postgresql@15"
 
-  # Pinned HF revision for fallback downloads (set a commit hash)
+  # Pinned HF revision for on-install download (set a commit hash)
   PINNED_HF_REPO = "sentence-transformers/stsb-distilbert-base"
   PINNED_HF_REV  = "main" # TODO: set to a specific commit hash to pin
-
-  # Pinned model resource (upload a tarball/zip and fill URL/SHA256)
-  # Recommended: host on a GitHub release or in this tap repo.
-  # Contents should be the unpacked model directory (e.g. stsb-distilbert-base/**).
-  resource "embedding-model-stsb-distilbert-base" do
-    # Prefer hosting as a GitHub Release asset to avoid repo file-size limits
-    url "https://github.com/ashabbir/homebrew-savant/releases/download/model-stsb-distilbert-base-v1/stsb-distilbert-base-v1.tar.gz"
-    sha256 "8ad82ab7ee0a73edcf4174f0cfebe074cf1742f5e9cf8a6f69df9245a203aed3"
-  end
 
   def install
     # Create virtualenv and install the package itself
@@ -30,28 +21,20 @@ class SavantContext < Formula
 
     # Stage and install the pinned embedding model into pkgshare
     model_target = pkgshare/"embeddings/models/stsb-distilbert-base"
-    begin
-      resource("embedding-model-stsb-distilbert-base").stage do
-        model_target.mkpath
-        model_target.install Dir["*"]
-      end
-    rescue => e
-      ohai "Model resource not found or failed (#{e.class}: #{e}). Falling back to Hugging Face download."
-      model_target.mkpath
-      # Use huggingface_hub to snapshot a fixed repo revision into model_target
-      py = <<~PY
-        import os
-        from huggingface_hub import snapshot_download
-        target = r"#{model_target}"
-        repo_id = os.environ.get("SAVANT_EMBEDDING_REPO", "#{PINNED_HF_REPO}")
-        revision = os.environ.get("SAVANT_EMBEDDING_REVISION", "#{PINNED_HF_REV}")
-        snapshot_download(repo_id=repo_id, revision=revision, local_dir=target, local_dir_use_symlinks=False)
-        # Write revision marker for provenance
-        with open(os.path.join(target, "REVISION"), "w", encoding="utf-8") as f:
-            f.write(revision + "\n")
-      PY
-      system libexec/"bin/python", "-c", py
-    end
+    model_target.mkpath
+    # Use huggingface_hub to snapshot a fixed repo revision into model_target
+    py = <<~PY
+      import os
+      from huggingface_hub import snapshot_download
+      target = r"#{model_target}"
+      repo_id = os.environ.get("SAVANT_EMBEDDING_REPO", "#{PINNED_HF_REPO}")
+      revision = os.environ.get("SAVANT_EMBEDDING_REVISION", "#{PINNED_HF_REV}")
+      snapshot_download(repo_id=repo_id, revision=revision, local_dir=target, local_dir_use_symlinks=False)
+      # Write revision marker for provenance
+      with open(os.path.join(target, "REVISION"), "w", encoding="utf-8") as f:
+          f.write(revision + "\n")
+    PY
+    system libexec/"bin/python", "-c", py
 
     # Wrap entry points to set the model directory for offline use
     env = {
