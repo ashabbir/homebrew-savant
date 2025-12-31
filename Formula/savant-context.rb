@@ -46,6 +46,9 @@ class SavantContext < Formula
         repo_id = os.environ.get("SAVANT_EMBEDDING_REPO", "#{PINNED_HF_REPO}")
         revision = os.environ.get("SAVANT_EMBEDDING_REVISION", "#{PINNED_HF_REV}")
         snapshot_download(repo_id=repo_id, revision=revision, local_dir=target, local_dir_use_symlinks=False)
+        # Write revision marker for provenance
+        with open(os.path.join(target, "REVISION"), "w", encoding="utf-8") as f:
+            f.write(revision + "\n")
       PY
       system libexec/"bin/python", "-c", py
     end
