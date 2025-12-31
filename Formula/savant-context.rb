@@ -4,7 +4,7 @@ class SavantContext < Formula
   desc "Context MCP server with PostgreSQL-based code indexer"
   homepage "https://github.com/ashabbir/context"
   url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0.tar.gz"
-  sha256 "bb1ae990d7386ec064047c89891dddd87607ee49204f8f58df2bb8e9d38e3d8f"
+  sha256 "8b242b05521fd532158658340a7bb7491c98e0ce7741b96d047cd5132fae4f75"
   license "MIT"
 
   depends_on "python@3.10"
@@ -18,6 +18,12 @@ class SavantContext < Formula
   resource "embedding-model-stsb-distilbert-base" do
     url "https://github.com/ashabbir/homebrew-savant/releases/download/model-stsb-distilbert-base-v1/stsb-distilbert-base-v1.tar.gz"
     sha256 "8ad82ab7ee0a73edcf4174f0cfebe074cf1742f5e9cf8a6f69df9245a203aed3"
+  end
+
+  # Vendored pgvector source to build against PostgreSQL@15
+  resource "pgvector" do
+    url "https://github.com/pgvector/pgvector/archive/refs/tags/v0.8.1.tar.gz"
+    sha256 "a9094dfb85ccdde3cbb295f1086d4c71a20db1d26bf1d6c39f07a7d164033eb4"
   end
 
   # Python runtime dependencies (vendored wheels/sdists; macOS arm64, Python 3.10)
@@ -112,7 +118,7 @@ class SavantContext < Formula
     venv = virtualenv_create(libexec, "python3.10")
     # Install vendored Python dependencies from cached downloads (allow wheels)
     python = Formula["python@3.10"].opt_bin/"python3.10"
-    py_resources = resources.reject { |r| r.name == "embedding-model-stsb-distilbert-base" }
+    py_resources = resources.reject { |r| ["embedding-model-stsb-distilbert-base", "pgvector"].include?(r.name) }
     py_resources.each do |r|
       r.fetch
       # Copy to a filename without Homebrew cache prefix to satisfy pip's wheel parser
@@ -143,6 +149,13 @@ class SavantContext < Formula
   def post_install
     # Create data directory if needed
     (var/"savant-context").mkpath
+
+    # Build and install pgvector extension for PostgreSQL@15
+    resource("pgvector").stage do
+      pg_config = Formula["postgresql@15"].opt_bin/"pg_config"
+      system "make", "PG_CONFIG=#{pg_config}"
+      system "make", "PG_CONFIG=#{pg_config}", "install"
+    end
   end
 
   def caveats
