@@ -196,48 +196,25 @@ savant-context db --help
 
 ## MCP Tools
 
-Once the server is running, these tools are available to MCP clients:
+Once the server is running, these tools are available to MCP clients (and via CLI under `savant-context tool <name>`):
 
-### `search` - Full-Text Search
+- `code_search`: Semantic search across indexed code
+  - Example (CLI): `savant-context tool code_search "def authenticate" --repo my-repo --limit 5`
 
-Search across all indexed code:
+- `memory_bank_search`: Semantic search within memory bank markdown
+  - Example (CLI): `savant-context tool memory_bank_search "architecture" --repo my-repo`
 
-```json
-{
-  "query": "function definition",
-  "repo": "optional-repo-name",
-  "limit": 10
-}
-```
+- `repos_list`: List indexed repos with README excerpts
+  - Example (CLI): `savant-context tool repos_list --filter context`
 
-### `list_repos` - List Repositories
+- `repo_status`: Per-repo index status (file/chunk counts)
+  - Example (CLI): `savant-context tool repo_status`
 
-Get all indexed repositories with basic info.
+- `memory_resources_list`: List memory bank resources
+  - Example (CLI): `savant-context tool memory_resources_list --repo my-repo`
 
-### `repo_stats` - Repository Statistics
-
-Get detailed statistics for repositories:
-
-```json
-{
-  "repo_name": "optional-specific-repo"
-}
-```
-
-### `index_repo` - Trigger Indexing
-
-Index a repository from the MCP server:
-
-```json
-{
-  "path": "/path/to/repo",
-  "name": "optional-name"
-}
-```
-
-### `delete_repo` - Remove Repository
-
-Remove a repository from the index:
+- `memory_resources_read`: Read a memory bank resource by URI
+  - Example (CLI): `savant-context tool memory_resources_read "my-repo:memory_bank/architecture.md"`
 
 ```json
 {
