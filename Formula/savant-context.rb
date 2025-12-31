@@ -26,9 +26,24 @@ class SavantContext < Formula
 
     # Stage and install the pinned embedding model into pkgshare
     model_target = pkgshare/"embeddings/models/stsb-distilbert-base"
-    resource("embedding-model-stsb-distilbert-base").stage do
+    begin
+      resource("embedding-model-stsb-distilbert-base").stage do
+        model_target.mkpath
+        model_target.install Dir["*"]
+      end
+    rescue => e
+      ohai "Model resource not found or failed (#{e.class}: #{e}). Falling back to Hugging Face download."
       model_target.mkpath
-      model_target.install Dir["*"]
+      # Use huggingface_hub to snapshot a fixed repo revision into model_target
+      py = <<~PY
+        import os
+        from huggingface_hub import snapshot_download
+        target = r"#{model_target}"
+        repo_id = os.environ.get("SAVANT_EMBEDDING_REPO", "sentence-transformers/stsb-distilbert-base")
+        revision = os.environ.get("SAVANT_EMBEDDING_REVISION", "main")
+        snapshot_download(repo_id=repo_id, revision=revision, local_dir=target, local_dir_use_symlinks=False)
+      PY
+      system libexec/"bin/python", "-c", py
     end
 
     # Wrap entry points to set the model directory for offline use
