@@ -47,7 +47,8 @@ class SavantContext < Formula
         with open(os.path.join(target, "REVISION"), "w", encoding="utf-8") as f:
             f.write(revision + "\n")
       PY
-      system libexec/"bin/python", "-c", py
+      (buildpath/"fetch_model.py").write(py)
+      system libexec/"bin/python", (buildpath/"fetch_model.py")
     end
 
     # Wrap entry points to set the model directory for offline use
