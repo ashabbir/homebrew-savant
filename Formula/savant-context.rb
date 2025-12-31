@@ -4,7 +4,7 @@ class SavantContext < Formula
   desc "Context MCP server with PostgreSQL-based code indexer"
   homepage "https://github.com/ashabbir/context"
   url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0.tar.gz"
-  sha256 "67249d777bd132883ab3ea9de8bee12414a92995d277642c3f89b4d41a5b4d5a"
+  sha256 "bb1ae990d7386ec064047c89891dddd87607ee49204f8f58df2bb8e9d38e3d8f"
   license "MIT"
 
   depends_on "python@3.10"
@@ -143,6 +143,29 @@ class SavantContext < Formula
   def post_install
     # Create data directory if needed
     (var/"savant-context").mkpath
+  end
+
+  def caveats
+    <<~EOS
+      Savant Context is installed. Quick tips:
+
+      - Initialize DB:    savant-context db setup
+      - Index a repo:     savant-context index repo /path/to/repo --name my-repo
+      - Run MCP server:   savant-context run   (or use shortcut: savant)
+
+      Useful tools (via MCP or CLI):
+        - code_search            Semantic search across indexed code
+        - memory_bank_search     Search memory bank markdown
+        - repos_list             List repos with README excerpts
+        - repo_status            Per-repo index status
+        - memory_resources_list  List memory bank resources
+        - memory_resources_read  Read a memory bank resource
+
+      Diagnostics:
+        savant-context diagnostics
+
+      Banner shows model, Postgres version, and pgvector status.
+    EOS
   end
 
   test do
