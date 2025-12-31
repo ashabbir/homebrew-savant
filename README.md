@@ -5,7 +5,7 @@ A standalone MCP (Model Context Protocol) server with PostgreSQL-based code inde
 **Install via Homebrew:**
 
 ```bash
-brew tap ashabbir/savant-context https://github.com/ashabbir/homebrew-savant-context
+brew tap ashabbir/savant https://github.com/ashabbir/homebrew-savant
 brew install savant-context
 ```
 
@@ -35,7 +35,7 @@ Savant Context lets you index your code repositories and search across all your 
 #### Option 1: Homebrew (Recommended)
 
 ```bash
-brew tap ashabbir/savant-context https://github.com/ashabbir/homebrew-savant-context
+brew tap ashabbir/savant https://github.com/ashabbir/homebrew-savant
 brew install savant-context
 ```
 
