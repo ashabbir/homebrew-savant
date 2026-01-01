@@ -2,6 +2,29 @@
 
 A standalone MCP (Model Context Protocol) server with PostgreSQL-based code indexer. Index your repositories and search across all your code through an MCP interface or CLI.
 
+## Quick Start (Out‑of‑the‑Box)
+
+```bash
+# 1) Install
+brew tap ashabbir/savant https://github.com/ashabbir/homebrew-savant
+brew install savant-context
+
+# 2) Start PostgreSQL (Homebrew current)
+brew services start postgresql
+
+# 3) Initialize database
+savant-context db setup
+
+# 4) Index a repo and check status
+savant-context index repo /path/to/repo --name my-repo
+savant-context status
+
+# 5) Run MCP server (stdio)
+savant-context run    # or: savant
+```
+
+No extra setup required: pgvector and the ML stack ship with the formula.
+
 **Install via Homebrew:**
 
 ```bash
