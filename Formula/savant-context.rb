@@ -107,6 +107,46 @@ class SavantContext < Formula
     sha256 "60937c959e6f44159fdd9f56fbdd302501f96114a5ba436829496d5f32d8de3f"
   end
 
+  resource "nltk" do
+    url "https://files.pythonhosted.org/packages/60/90/81ac364ef94209c100e12579629dc92bf7a709a84af32f8c551b02c07e94/nltk-3.9.2-py3-none-any.whl"
+    sha256 "1e209d2b3009110635ed9709a67a1a3e33a10f799490fa71cf4bec218c11c88a"
+  end
+
+  resource "tqdm" do
+    url "https://files.pythonhosted.org/packages/d0/30/dc54f88dd4a2b5dc8a0279bdd7270e735851848b762aeb1c1184ed1f6b14/tqdm-4.67.1-py3-none-any.whl"
+    sha256 "26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2"
+  end
+
+  resource "joblib" do
+    url "https://files.pythonhosted.org/packages/7b/91/984aca2ec129e2757d1e4e3c81c3fcda9d0f85b74670a094cc443d9ee949/joblib-1.5.3-py3-none-any.whl"
+    sha256 "5fc3c5039fc5ca8c0276333a188bbd59d6b7ab37fe6632daa76bc7f9ec18e713"
+  end
+
+  resource "threadpoolctl" do
+    url "https://files.pythonhosted.org/packages/32/d5/f9a850d79b0851d1d4ef6456097579a9005b31fea68726a4ae5f2d82ddd9/threadpoolctl-3.6.0-py3-none-any.whl"
+    sha256 "43a0b8fd5a2928500110039e43a5eed8480b918967083ea48dc3ab9f13c4a7fb"
+  end
+
+  resource "scikit-learn" do
+    url "https://files.pythonhosted.org/packages/1c/ce/af9d99533b24c55ff4e18d9b7b4d9919bbc6cd8f22fe7a7be01519a347d5/scikit_learn-1.7.2-cp310-cp310-macosx_12_0_arm64.whl"
+    sha256 "36749fb62b3d961b1ce4fedf08fa57a1986cd409eff2d783bca5d4b9b5fce51c"
+  end
+
+  resource "scipy" do
+    url "https://files.pythonhosted.org/packages/ea/b1/4deb37252311c1acff7f101f6453f0440794f51b6eacb1aad4459a134081/scipy-1.15.3-cp310-cp310-macosx_14_0_arm64.whl"
+    sha256 "aef683a9ae6eb00728a542b796f52a5477b78252edede72b8327a886ab63293f"
+  end
+
+  resource "pillow" do
+    url "https://files.pythonhosted.org/packages/cb/e9/4e58fb097fb74c7b4758a680aacd558810a417d1edaa7000142976ef9d2f/pillow-12.0.0-cp310-cp310-macosx_11_0_arm64.whl"
+    sha256 "1ac11e8ea4f611c3c0147424eae514028b5e9077dd99ab91e1bd7bc33ff145e1"
+  end
+
+  resource "torchvision" do
+    url "https://files.pythonhosted.org/packages/f7/09/d51aadf8591138e08b74c64a6eb783630c7a31ca2634416277115a9c3a2b/torchvision-0.24.1-cp310-cp310-macosx_11_0_arm64.whl"
+    sha256 "ded5e625788572e4e1c4d155d1bbc48805c113794100d70e19c76e39e4d53465"
+  end
+
   # Use ST 2.2.2 with compatible huggingface_hub to avoid deprecated APIs
   resource "sentence-transformers" do
     url "https://files.pythonhosted.org/packages/20/9c/f07bd70d128fdb107bc02a0c702b9058b4fe147d0ba67b5a0f4c3cf15a54/sentence-transformers-2.2.2.tar.gz"
