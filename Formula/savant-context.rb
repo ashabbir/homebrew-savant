@@ -53,8 +53,8 @@ class SavantContext < Formula
   end
 
   resource "huggingface_hub" do
-    url "https://files.pythonhosted.org/packages/ae/5c/3fc9c284bac5a16ac462ca87768e9386059f5ce9a85244ce23bb4fe74d02/huggingface_hub-0.13.4-py3-none-any.whl"
-    sha256 "4d3d40593de6673d624a4baaaf249b9bf5165bfcafd1ad58de361931f0b4fda5"
+    url "https://pypi.io/packages/source/h/huggingface_hub/huggingface_hub-0.13.4.tar.gz"
+    sha256 "db83d9c2f76aed8cf49893ffadd6be24e82074da2f64b1d36b8ba40eb255e115"
   end
 
   resource "filelock" do
