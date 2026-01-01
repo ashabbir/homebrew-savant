@@ -9,20 +9,23 @@ A standalone MCP (Model Context Protocol) server with PostgreSQL-based code inde
 brew tap ashabbir/savant https://github.com/ashabbir/homebrew-savant
 brew install savant-context
 
-# 2) Start PostgreSQL (Homebrew current)
-# Option A (recommended):
-brew services start postgresql@15
-# Option B (convenience):
+# 2) Start PostgreSQL (choose one)
+# Option A (convenience):
 savant-context db start
+# Option B (Homebrew services):
+brew services start postgresql@15
 
-# 3) Initialize database
+# 3) Run Homebrew postinstall (pgvector)
+brew postinstall ashabbir/savant/savant-context
+
+# 4) Initialize database
 savant-context db setup
 
-# 4) Index a repo and check status
+# 5) Index a repo and check status
 savant-context index repo /path/to/repo --name my-repo
 savant-context status
 
-# 5) Run MCP server (stdio)
+# 6) Run MCP server (stdio)
 savant-context run
 ```
 

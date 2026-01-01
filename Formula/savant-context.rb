@@ -164,6 +164,13 @@ class SavantContext < Formula
     <<~EOS
       Savant Context is installed. Quick tips:
 
+      IMPORTANT (after install):
+        1) Start PostgreSQL (choose one):
+             savant-context db start
+           or brew services start postgresql@15
+        2) Run Homebrew postinstall for pgvector:
+             brew postinstall ashabbir/savant/savant-context
+
       - Initialize DB:    savant-context db setup
       - Index a repo:     savant-context index repo /path/to/repo --name my-repo
       - Run MCP server:   savant-context run
@@ -182,9 +189,9 @@ class SavantContext < Formula
       Banner shows model, Postgres version, and pgvector status.
 
       If pgvector install reports a permission error during post-install,
-      either run:
+      ensure PostgreSQL is started and re-run:
         brew postinstall ashabbir/savant/savant-context
-      or build manually:
+      If it still fails, build manually:
         curl -L https://github.com/ashabbir/homebrew-savant/releases/download/model-stsb-distilbert-base-v1/pgvector-0.8.1.tar.gz -o pgvector-0.8.1.tar.gz
         tar -xzf pgvector-0.8.1.tar.gz && cd pgvector-0.8.1
         make PG_CONFIG=$(brew --prefix postgresql@15)/bin/pg_config
