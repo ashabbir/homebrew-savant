@@ -3,9 +3,9 @@ class SavantContext < Formula
 
   desc "Context MCP server with PostgreSQL-based code indexer"
   homepage "https://github.com/ashabbir/context"
-  url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
+  url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
   version "1.0.0"
-  sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+  sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   license "MIT"
 
   depends_on "python@3.10"
@@ -17,141 +17,141 @@ class SavantContext < Formula
 
   # Pinned model resource hosted on public GitHub Release (preferred)
   resource "embedding-model-stsb-distilbert-base" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   # Vendored pgvector source to build against PostgreSQL@17
   resource "pgvector" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   # Python runtime dependencies (vendored wheels/sdists; macOS arm64, Python 3.10)
   resource "numpy" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "torch" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "transformers" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "tokenizers" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "safetensors" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "huggingface_hub" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "filelock" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "packaging" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "PyYAML" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "regex" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "requests" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "typing_extensions" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "fsspec" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "hf_xet" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "sympy" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "sentencepiece" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "nltk" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "tqdm" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "joblib" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "threadpoolctl" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "scikit-learn" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "scipy" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "pillow" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   resource "torchvision" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   # Modern sentence-transformers compatible with newer huggingface_hub
   resource "sentence-transformers" do
-    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix6.tar.gz"
-    sha256 "7ba8e17e79189daf3eac980738b8b8e3c4a110aea8bc0357d2dedaef1e99421c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+    sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
   end
 
   def install
