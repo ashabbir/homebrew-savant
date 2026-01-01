@@ -119,14 +119,12 @@ class SavantContext < Formula
     venv = virtualenv_create(libexec, "python3.10")
     # Install vendored Python dependencies into the venv
     # Exclude non-Python resources (model files, pgvector source)
-    pip = libexec/"bin/pip"
     resources.each do |r|
       next if ["embedding-model-stsb-distilbert-base", "pgvector"].include?(r.name)
-      cached_download = r.cached_download
       if r.url.to_s.end_with?(".whl")
-        system pip, "install", "--no-deps", "--only-binary=:all:", cached_download
+        venv.pip_install r.cached_download
       else
-        system pip, "install", "--no-deps", "--no-binary=:all:", cached_download
+        venv.pip_install r
       end
     end
     # Install the package itself into the venv
