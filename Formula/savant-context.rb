@@ -122,7 +122,11 @@ class SavantContext < Formula
     resources.each do |r|
       next if ["embedding-model-stsb-distilbert-base", "pgvector"].include?(r.name)
       if r.url.to_s.end_with?(".whl")
-        venv.pip_install r.cached_download
+        r.stage do
+          wheel_path = Dir["*.whl"].first
+          system "python3.10", "-m", "pip", "--python=#{libexec/"bin/python"}",
+                 "install", "--no-deps", "--only-binary=:all:", wheel_path
+        end
       else
         venv.pip_install r
       end
