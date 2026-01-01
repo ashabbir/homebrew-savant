@@ -119,7 +119,9 @@ class SavantContext < Formula
     venv = virtualenv_create(libexec, "python3.10")
     # Install vendored Python dependencies from cached downloads (allow wheels)
     python = Formula["python@3.10"].opt_bin/"python3.10"
-    py_resources = resources.reject { |r| ["embedding-model-stsb-distilbert-base"].include?(r.name) }
+    # Only Python wheels/sdists should be installed via pip.
+    # Exclude the vendored embedding model and non-Python resources like pgvector.
+    py_resources = resources.reject { |r| ["embedding-model-stsb-distilbert-base", "pgvector"].include?(r.name) }
     py_resources.each do |r|
       r.fetch
       # Copy to a filename without Homebrew cache prefix to satisfy pip's wheel parser
