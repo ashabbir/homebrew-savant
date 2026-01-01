@@ -10,7 +10,10 @@ brew tap ashabbir/savant https://github.com/ashabbir/homebrew-savant
 brew install savant-context
 
 # 2) Start PostgreSQL (Homebrew current)
-brew services start postgresql
+# Option A (recommended):
+brew services start postgresql@15
+# Option B (convenience):
+savant-context db start
 
 # 3) Initialize database
 savant-context db setup
@@ -20,7 +23,7 @@ savant-context index repo /path/to/repo --name my-repo
 savant-context status
 
 # 5) Run MCP server (stdio)
-savant-context run    # or: savant
+savant-context run
 ```
 
 No extra setup required: pgvector and the ML stack ship with the formula.
@@ -38,7 +41,7 @@ Savant Context lets you index your code repositories and search across all your 
 
 ### Key Features
 
-- **Full-Text Search** - Powerful PostgreSQL full-text search across indexed repositories
+- **Semantic Vector Search** - pgvector-powered search across indexed repositories
 - **Code Indexing** - Automatically detect language, intelligently chunk content, and index efficiently
 - **MCP Compatible** - Works with Claude Desktop and any MCP client for seamless integration
 - **Database Management** - Dump and restore indexed data for backups and migrations
@@ -62,23 +65,6 @@ brew tap ashabbir/savant https://github.com/ashabbir/homebrew-savant
 brew install savant-context
 ```
 
-#### Option 2: From Source
-
-```bash
-git clone https://github.com/ashabbir/context.git
-cd context
-pip install -e .
-```
-
-#### Option 3: From Release
-
-```bash
-wget https://github.com/ashabbir/context/archive/refs/tags/v0.1.0.tar.gz
-tar xzf v0.1.0.tar.gz
-cd context-0.1.0
-pip install -e .
-```
-
 ## Quick Start
 
 ### View Help & Banner
@@ -96,16 +82,6 @@ savant-context readme
 ```
 
 Displays the full README documentation.
-
-### Quick Launch (Shortcut)
-
-Start the MCP server immediately:
-
-```bash
-savant
-```
-
-This is the fastest way to get the server running.
 
 ### Full Setup
 
@@ -148,16 +124,10 @@ Shows all repositories with file counts, chunk counts, and last indexed time.
 #### 4. Start the MCP Server
 
 ```bash
-savant
-```
-
-Or use the full command:
-
-```bash
 savant-context run
 ```
 
-Both launch the server listening on stdio transport, ready for MCP clients.
+This launches the server listening on stdio transport, ready for MCP clients.
 
 ## CLI Commands Reference
 
@@ -199,8 +169,6 @@ savant-context status
 # Start MCP server on stdio transport
 savant-context run
 
-# Or use the shortcut
-savant
 ```
 
 ### Help & Documentation
@@ -324,7 +292,7 @@ Restart Claude Desktop to connect to the MCP server.
 - `file_id` (INTEGER FK) - File ID
 - `chunk_index` (INTEGER) - Chunk sequence number
 - `content` (TEXT) - Chunk content
-- `content_vector` (tsvector) - PostgreSQL FTS vector for search
+- `embedding` (vector) - pgvector embedding for search
 - `created_at` (TIMESTAMP) - Creation time
 
 ## Troubleshooting
@@ -384,12 +352,12 @@ savant-context/
 1. **Large Files** - Files over 50MB are skipped automatically
 2. **Incremental Indexing** - Re-indexing only processes changed files
 3. **Chunk Configuration** - Adjust chunk size in `savant_context/indexer/chunker.py` if needed
-4. **Search Optimization** - PostgreSQL FTS indexes are created automatically
+4. **Search Optimization** - pgvector indexes are created automatically
 
 ## Roadmap
 
 - [ ] Web UI for repository management
-- [ ] Vector embeddings for semantic search
+- [ ] Hybrid search (vector + metadata filters)
 - [ ] Incremental indexing optimization
 - [ ] Multi-language support improvements
 - [ ] Export capabilities (JSON, CSV)
