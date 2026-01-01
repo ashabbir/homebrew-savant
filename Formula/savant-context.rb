@@ -3,9 +3,9 @@ class SavantContext < Formula
 
   desc "Context MCP server with PostgreSQL-based code indexer"
   homepage "https://github.com/ashabbir/context"
-  url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix7.tar.gz"
+  url "https://raw.githubusercontent.com/ashabbir/homebrew-savant/9d03e57b48223fb78d66131dcbb84e47ec7104f7/savant-context-1.0.0.tar.gz"
   version "1.0.0"
-  sha256 "90d02593ca06b5168eb3873b01e6f07a0742634682bb419b21ca6e2402e038a2"
+  sha256 "21857a9203a08582cdc7c41a335dc835a151f5f74ee77e4da1d47578f960dfe8"
   license "MIT"
 
   depends_on "python@3.10"
