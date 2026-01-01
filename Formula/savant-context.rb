@@ -172,8 +172,8 @@ class SavantContext < Formula
         venv.pip_install r
       end
     end
-    # Install the package itself into the venv
-    venv.pip_install buildpath
+    # Install the package itself into the venv from the working tree without cache/binary reuse
+    system libexec/"bin/pip", "install", "--no-deps", "--no-binary", ":all:", "--no-cache-dir", buildpath
 
     # Stage and install the pinned embedding model into pkgshare (no network fallback)
     model_target = pkgshare/"embeddings/models/stsb-distilbert-base"
