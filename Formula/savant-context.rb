@@ -22,7 +22,7 @@ class SavantContext < Formula
 
   # Vendored pgvector source to build against PostgreSQL@15
   resource "pgvector" do
-    url "https://github.com/pgvector/pgvector/archive/refs/tags/v0.8.1.tar.gz"
+    url "https://github.com/ashabbir/homebrew-savant/releases/download/model-stsb-distilbert-base-v1/pgvector-0.8.1.tar.gz"
     sha256 "a9094dfb85ccdde3cbb295f1086d4c71a20db1d26bf1d6c39f07a7d164033eb4"
   end
 
@@ -146,7 +146,6 @@ class SavantContext < Formula
       "EMBEDDING_MODEL_DIR" => model_target.to_s,
     }
     (bin/"savant-context").write_env_script libexec/"bin/savant-context", env
-    (bin/"savant").write_env_script libexec/"bin/savant", env
   end
 
   def post_install
@@ -167,7 +166,7 @@ class SavantContext < Formula
 
       - Initialize DB:    savant-context db setup
       - Index a repo:     savant-context index repo /path/to/repo --name my-repo
-      - Run MCP server:   savant-context run   (or use shortcut: savant)
+      - Run MCP server:   savant-context run
 
       Useful tools (via MCP or CLI):
         - code_search            Semantic search across indexed code
@@ -181,13 +180,21 @@ class SavantContext < Formula
         savant-context diagnostics
 
       Banner shows model, Postgres version, and pgvector status.
+
+      If pgvector install reports a permission error during post-install,
+      either run:
+        brew postinstall ashabbir/savant/savant-context
+      or build manually:
+        curl -L https://github.com/ashabbir/homebrew-savant/releases/download/model-stsb-distilbert-base-v1/pgvector-0.8.1.tar.gz -o pgvector-0.8.1.tar.gz
+        tar -xzf pgvector-0.8.1.tar.gz && cd pgvector-0.8.1
+        make PG_CONFIG=$(brew --prefix postgresql@15)/bin/pg_config
+        make PG_CONFIG=$(brew --prefix postgresql@15)/bin/pg_config install
     EOS
   end
 
   test do
     system "#{bin}/savant-context", "--version"
     system "#{bin}/savant-context", "--help"
-    system "#{bin}/savant", "--help"
   end
 
   service do
