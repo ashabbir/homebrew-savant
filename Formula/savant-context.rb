@@ -8,7 +8,9 @@ class SavantContext < Formula
   license "MIT"
 
   depends_on "python@3.10"
-  depends_on "postgresql@15"
+  # Use Homebrew's current PostgreSQL to avoid version mismatch with pgvector bottles
+  depends_on "postgresql"
+  depends_on "pgvector"
 
   # Pinned HF revision for on-install download (set a commit hash)
   PINNED_HF_REPO = "sentence-transformers/stsb-distilbert-base"
@@ -20,11 +22,7 @@ class SavantContext < Formula
     sha256 "8ad82ab7ee0a73edcf4174f0cfebe074cf1742f5e9cf8a6f69df9245a203aed3"
   end
 
-  # Vendored pgvector source to build against PostgreSQL@15
-  resource "pgvector" do
-    url "https://github.com/pgvector/pgvector/archive/refs/tags/v0.8.1.tar.gz"
-    sha256 "a9094dfb85ccdde3cbb295f1086d4c71a20db1d26bf1d6c39f07a7d164033eb4"
-  end
+  # Note: pgvector is provided by Homebrew dependency above (no manual build needed)
 
   # Python runtime dependencies (vendored wheels/sdists; macOS arm64, Python 3.10)
   resource "numpy" do
@@ -107,9 +105,32 @@ class SavantContext < Formula
     sha256 "60937c959e6f44159fdd9f56fbdd302501f96114a5ba436829496d5f32d8de3f"
   end
 
+  # Prefer modern sentence-transformers to avoid deprecated huggingface_hub APIs
   resource "sentence-transformers" do
-    url "https://files.pythonhosted.org/packages/20/9c/f07bd70d128fdb107bc02a0c702b9058b4fe147d0ba67b5a0f4c3cf15a54/sentence-transformers-2.2.2.tar.gz"
-    sha256 "dbc60163b27de21076c9a30d24b5b7b6fa05141d68cf2553fa9a77bf79a29136"
+    url "https://files.pythonhosted.org/packages/2e/1b/7ae98a096eebf72e484d4e7b9b1a3d9fbd3d4b8fd17a0d6d9ab5e53a4109/sentence_transformers-5.2.0-py3-none-any.whl"
+    sha256 "d3c637fef68d4a00a85cc9ab8d01d8d2dce5b9da569e3ba0b491c34832367a16"
+  end
+
+  # Supplemental deps used by sentence-transformers
+  resource "nltk" do
+    url "https://files.pythonhosted.org/packages/02/6e/550a9e30b48eaf8657cf4ee143046617070c3aabca4aa0f879210b1cd5b1/nltk-3.9.1-py3-none-any.whl"
+    sha256 "00bbcd28f8f6a80f6aa11705f015d4dcd4465e6a191dbb4815c631a8dc89eafe"
+  end
+  resource "scikit-learn" do
+    url "https://files.pythonhosted.org/packages/55/6f/a2b3a58444bf6c3fdc542da842f54bc4bea08d7b67d5bf61d7ed0f3050ff/scikit_learn-1.7.2-cp310-cp310-macosx_12_0_arm64.whl"
+    sha256 "2ecbe9d6ac8d1111b23a9afa51a05ea7c3d92fe05453677643652d861274e886"
+  end
+  resource "scipy" do
+    url "https://files.pythonhosted.org/packages/67/d4/26a1999a83bd173b2efa34a75bdf38cbc77df1abd70a0b9863ba31b56cf6/scipy-1.15.3-cp310-cp310-macosx_14_0_arm64.whl"
+    sha256 "7aa9233b7c2ccdf8f756f26db1da2aa4b9fae24a70b84649b14174e280d9aa65"
+  end
+  resource "joblib" do
+    url "https://files.pythonhosted.org/packages/3e/24/52e504c0a828d11b59b91220b06bb62b15c8533cb8a3c8187c250f3cae3f/joblib-1.5.3-py3-none-any.whl"
+    sha256 "8d750a39cff6d4fb2e01f86d4ca1e044450b82268427c73d66aaf7399cb63379"
+  end
+  resource "threadpoolctl" do
+    url "https://files.pythonhosted.org/packages/62/80/ef451a03401cdf08f58e43c6dc2109b88fb8dd31b3bd5c0f1f259bdb0715/threadpoolctl-3.6.0-py3-none-any.whl"
+    sha256 "5ff7b3fdc280f2c82db26a4e6690ead04bc9bde08816b5fa28b086752a17333b"
   end
 
   def install
@@ -118,7 +139,7 @@ class SavantContext < Formula
     venv = virtualenv_create(libexec, "python3.10")
     # Install vendored Python dependencies from cached downloads (allow wheels)
     python = Formula["python@3.10"].opt_bin/"python3.10"
-    py_resources = resources.reject { |r| ["embedding-model-stsb-distilbert-base", "pgvector"].include?(r.name) }
+    py_resources = resources.reject { |r| ["embedding-model-stsb-distilbert-base"].include?(r.name) }
     py_resources.each do |r|
       r.fetch
       # Copy to a filename without Homebrew cache prefix to satisfy pip's wheel parser
@@ -149,13 +170,6 @@ class SavantContext < Formula
   def post_install
     # Create data directory if needed
     (var/"savant-context").mkpath
-
-    # Build and install pgvector extension for PostgreSQL@15
-    resource("pgvector").stage do
-      pg_config = Formula["postgresql@15"].opt_bin/"pg_config"
-      system "make", "PG_CONFIG=#{pg_config}"
-      system "make", "PG_CONFIG=#{pg_config}", "install"
-    end
   end
 
   def caveats
