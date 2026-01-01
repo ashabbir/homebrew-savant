@@ -148,10 +148,10 @@ class SavantContext < Formula
     sha256 "ded5e625788572e4e1c4d155d1bbc48805c113794100d70e19c76e39e4d53465"
   end
 
-  # Use ST 2.2.2 with compatible huggingface_hub to avoid deprecated APIs
+  # Modern sentence-transformers compatible with newer huggingface_hub
   resource "sentence-transformers" do
-    url "https://files.pythonhosted.org/packages/20/9c/f07bd70d128fdb107bc02a0c702b9058b4fe147d0ba67b5a0f4c3cf15a54/sentence-transformers-2.2.2.tar.gz"
-    sha256 "dbc60163b27de21076c9a30d24b5b7b6fa05141d68cf2553fa9a77bf79a29136"
+    url "https://pypi.io/packages/py3/s/sentence-transformers/sentence_transformers-5.1.2-py3-none-any.whl"
+    sha256 "724ce0ea62200f413f1a5059712aff66495bc4e815a1493f7f9bca242414c333"
   end
 
   def install
