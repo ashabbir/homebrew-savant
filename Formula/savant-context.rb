@@ -3,8 +3,9 @@ class SavantContext < Formula
 
   desc "Context MCP server with PostgreSQL-based code indexer"
   homepage "https://github.com/ashabbir/context"
-  url "https://raw.githubusercontent.com/ashabbir/homebrew-savant/772f095d2a4368abead2310ab48cc9eba76e2339/savant-context-1.0.0.tar.gz"
-  sha256 "4a10a27a7c57abc9976a1e8343f1a4af38b39d58d61da11ed8b434ee13326fec"
+  url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix1.tar.gz"
+  version "1.0.0"
+  sha256 "1468f2725dc680ca86accff87f1c856e6c43706ce6abbe4ae2b28c84a599b1ed"
   license "MIT"
 
   depends_on "python@3.10"
@@ -53,8 +54,8 @@ class SavantContext < Formula
   end
 
   resource "huggingface_hub" do
-    url "https://pypi.io/packages/source/h/huggingface_hub/huggingface_hub-0.13.4.tar.gz"
-    sha256 "db83d9c2f76aed8cf49893ffadd6be24e82074da2f64b1d36b8ba40eb255e115"
+    url "https://pypi.io/packages/py3/h/huggingface_hub/huggingface_hub-0.36.0-py3-none-any.whl"
+    sha256 "7bcc9ad17d5b3f07b57c78e79d527102d08313caa278a641993acddcb894548d"
   end
 
   resource "filelock" do
