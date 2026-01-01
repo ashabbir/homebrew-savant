@@ -8,7 +8,7 @@ class SavantContext < Formula
   license "MIT"
 
   depends_on "python@3.10"
-  depends_on "postgresql@15"
+  depends_on "postgresql@17"
 
   # Pinned HF revision for on-install download (set a commit hash)
   PINNED_HF_REPO = "sentence-transformers/stsb-distilbert-base"
@@ -20,7 +20,7 @@ class SavantContext < Formula
     sha256 "8ad82ab7ee0a73edcf4174f0cfebe074cf1742f5e9cf8a6f69df9245a203aed3"
   end
 
-  # Vendored pgvector source to build against PostgreSQL@15
+  # Vendored pgvector source to build against PostgreSQL@17
   resource "pgvector" do
     url "https://github.com/ashabbir/homebrew-savant/releases/download/model-stsb-distilbert-base-v1/pgvector-0.8.1.tar.gz"
     sha256 "a9094dfb85ccdde3cbb295f1086d4c71a20db1d26bf1d6c39f07a7d164033eb4"
@@ -145,9 +145,9 @@ class SavantContext < Formula
     # Create data directory if needed
     (var/"savant-context").mkpath
 
-    # Build and install pgvector extension for PostgreSQL@15 so vector.so is available
+    # Build and install pgvector extension for PostgreSQL@17 so vector.so is available
     resource("pgvector").stage do
-      pg_config = Formula["postgresql@15"].opt_bin/"pg_config"
+      pg_config = Formula["postgresql@17"].opt_bin/"pg_config"
       system "make", "PG_CONFIG=#{pg_config}"
       system "make", "PG_CONFIG=#{pg_config}", "install"
     end
@@ -160,7 +160,7 @@ class SavantContext < Formula
       IMPORTANT (after install):
         1) Start PostgreSQL (choose one):
              savant-context db start
-           or brew services start postgresql@15
+           or brew services start postgresql@17
         2) Run Homebrew postinstall for pgvector:
              brew postinstall ashabbir/savant/savant-context
 
@@ -187,8 +187,8 @@ class SavantContext < Formula
       If it still fails, build manually:
         curl -L https://github.com/ashabbir/homebrew-savant/releases/download/model-stsb-distilbert-base-v1/pgvector-0.8.1.tar.gz -o pgvector-0.8.1.tar.gz
         tar -xzf pgvector-0.8.1.tar.gz && cd pgvector-0.8.1
-        make PG_CONFIG=$(brew --prefix postgresql@15)/bin/pg_config
-        make PG_CONFIG=$(brew --prefix postgresql@15)/bin/pg_config install
+        make PG_CONFIG=$(brew --prefix postgresql@17)/bin/pg_config
+        make PG_CONFIG=$(brew --prefix postgresql@17)/bin/pg_config install
     EOS
   end
 
