@@ -117,20 +117,13 @@ class SavantContext < Formula
     require "uri"
     # Create virtualenv and install the package itself
     venv = virtualenv_create(libexec, "python3.10")
-    # Install vendored Python dependencies from cached downloads (allow wheels)
-    python = Formula["python@3.10"].opt_bin/"python3.10"
-    # Only Python wheels/sdists should be installed via pip.
-    # Exclude the vendored embedding model and non-Python resources like pgvector.
-    py_resources = resources.reject { |r| ["embedding-model-stsb-distilbert-base", "pgvector"].include?(r.name) }
-    py_resources.each do |r|
-      r.fetch
-      # Copy to a filename without Homebrew cache prefix to satisfy pip's wheel parser
-      url = URI(r.url)
-      orig = File.basename(url.path)
-      cp r.cached_download, orig
-      system python, "-m", "pip", "--python=#{libexec/"bin/python"}", "install", "--no-deps", "--no-compile", orig
+    # Install vendored Python dependencies into the venv
+    # Exclude non-Python resources (model files, pgvector source)
+    resources.each do |r|
+      next if ["embedding-model-stsb-distilbert-base", "pgvector"].include?(r.name)
+      venv.pip_install r
     end
-    # Install the package itself
+    # Install the package itself into the venv
     venv.pip_install buildpath
 
     # Stage and install the pinned embedding model into pkgshare (no network fallback)
