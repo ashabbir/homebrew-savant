@@ -3,9 +3,9 @@ class SavantContext < Formula
 
   desc "Context MCP server with PostgreSQL-based code indexer"
   homepage "https://github.com/ashabbir/context"
-  url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix1.tar.gz"
+  url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
   version "1.0.0"
-  sha256 "1468f2725dc680ca86accff87f1c856e6c43706ce6abbe4ae2b28c84a599b1ed"
+  sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   license "MIT"
 
   depends_on "python@3.10"
@@ -17,141 +17,141 @@ class SavantContext < Formula
 
   # Pinned model resource hosted on public GitHub Release (preferred)
   resource "embedding-model-stsb-distilbert-base" do
-    url "https://github.com/ashabbir/homebrew-savant/releases/download/model-stsb-distilbert-base-v1/stsb-distilbert-base-v1.tar.gz"
-    sha256 "8ad82ab7ee0a73edcf4174f0cfebe074cf1742f5e9cf8a6f69df9245a203aed3"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   # Vendored pgvector source to build against PostgreSQL@17
   resource "pgvector" do
-    url "https://github.com/ashabbir/homebrew-savant/releases/download/model-stsb-distilbert-base-v1/pgvector-0.8.1.tar.gz"
-    sha256 "a9094dfb85ccdde3cbb295f1086d4c71a20db1d26bf1d6c39f07a7d164033eb4"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   # Python runtime dependencies (vendored wheels/sdists; macOS arm64, Python 3.10)
   resource "numpy" do
-    url "https://files.pythonhosted.org/packages/20/f7/b24208eba89f9d1b58c1668bc6c8c4fd472b20c45573cb767f59d49fb0f6/numpy-1.26.4-cp310-cp310-macosx_11_0_arm64.whl"
-    sha256 "2e4ee3380d6de9c9ec04745830fd9e2eccb3e6cf790d39d7b98ffd19b0dd754a"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "torch" do
-    url "https://files.pythonhosted.org/packages/dc/fb/1333ba666bbd53846638dd75a7a1d4eaf964aff1c482fc046e2311a1b499/torch-2.4.1-cp310-none-macosx_11_0_arm64.whl"
-    sha256 "d36a8ef100f5bff3e9c3cea934b9e0d7ea277cb8210c7152d34a9a6c5830eadd"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "transformers" do
-    url "https://files.pythonhosted.org/packages/6a/6b/2f416568b3c4c91c96e5a365d164f8a4a4a88030aa8ab4644181fdadce97/transformers-4.57.3-py3-none-any.whl"
-    sha256 "c77d353a4851b1880191603d36acb313411d3577f6e2897814f333841f7003f4"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "tokenizers" do
-    url "https://files.pythonhosted.org/packages/1c/58/2aa8c874d02b974990e89ff95826a4852a8b2a273c7d1b4411cdd45a4565/tokenizers-0.22.1-cp39-abi3-macosx_11_0_arm64.whl"
-    sha256 "8d4e484f7b0827021ac5f9f71d4794aaef62b979ab7608593da22b1d2e3c4edc"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "safetensors" do
-    url "https://files.pythonhosted.org/packages/e8/00/374c0c068e30cd31f1e1b46b4b5738168ec79e7689ca82ee93ddfea05109/safetensors-0.7.0-cp38-abi3-macosx_11_0_arm64.whl"
-    sha256 "94fd4858284736bb67a897a41608b5b0c2496c9bdb3bf2af1fa3409127f20d57"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "huggingface_hub" do
-    url "https://pypi.io/packages/py3/h/huggingface_hub/huggingface_hub-0.36.0-py3-none-any.whl"
-    sha256 "7bcc9ad17d5b3f07b57c78e79d527102d08313caa278a641993acddcb894548d"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "filelock" do
-    url "https://files.pythonhosted.org/packages/e3/7f/a1a97644e39e7316d850784c642093c99df1290a460df4ede27659056834/filelock-3.20.1-py3-none-any.whl"
-    sha256 "15d9e9a67306188a44baa72f569d2bfd803076269365fdea0934385da4dc361a"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/20/12/38679034af332785aac8774540895e234f4d07f7545804097de4b666afd8/packaging-25.0-py3-none-any.whl"
-    sha256 "29572ef2b1f17581046b3a2227d5c611fb25ec70ca1ba8554b24b0e69331a484"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "PyYAML" do
-    url "https://files.pythonhosted.org/packages/05/14/52d505b5c59ce73244f59c7a50ecf47093ce4765f116cdb98286a71eeca2/pyyaml-6.0.3-cp310-cp310-macosx_11_0_arm64.whl"
-    sha256 "02ea2dfa234451bbb8772601d7b8e426c2bfa197136796224e50e35a78777956"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "regex" do
-    url "https://files.pythonhosted.org/packages/39/b3/9a231475d5653e60002508f41205c61684bb2ffbf2401351ae2186897fc4/regex-2025.11.3-cp310-cp310-macosx_11_0_arm64.whl"
-    sha256 "d8b4a27eebd684319bdf473d39f1d79eed36bf2cd34bd4465cdb4618d82b3d56"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "requests" do
-    url "https://files.pythonhosted.org/packages/1e/db/4254e3eabe8020b458f1a747140d32277ec7a271daf1d235b70dc0b4e6e3/requests-2.32.5-py3-none-any.whl"
-    sha256 "2462f94637a34fd532264295e186976db0f5d453d1cdd31473c85a6a161affb6"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "typing_extensions" do
-    url "https://files.pythonhosted.org/packages/18/67/36e9267722cc04a6b9f15c7f3441c2363321a3ea07da7ae0c0707beb2a9c/typing_extensions-4.15.0-py3-none-any.whl"
-    sha256 "f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "fsspec" do
-    url "https://files.pythonhosted.org/packages/de/86/5486b0188d08aa643e127774a99bac51ffa6cf343e3deb0583956dca5b22/fsspec-2024.12.0-py3-none-any.whl"
-    sha256 "b520aed47ad9804237ff878b504267a3b0b441e97508bd6d2d8774e3db85cee2"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "hf_xet" do
-    url "https://files.pythonhosted.org/packages/7f/8c/c5becfa53234299bc2210ba314eaaae36c2875e0045809b82e40a9544f0c/hf_xet-1.2.0-cp37-abi3-macosx_11_0_arm64.whl"
-    sha256 "27df617a076420d8845bea087f59303da8be17ed7ec0cd7ee3b9b9f579dff0e4"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "sympy" do
-    url "https://files.pythonhosted.org/packages/a2/09/77d55d46fd61b4a135c444fc97158ef34a095e5681d0a6c10b75bf356191/sympy-1.14.0-py3-none-any.whl"
-    sha256 "e091cc3e99d2141a0ba2847328f5479b05d94a6635cb96148ccb3f34671bd8f5"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "sentencepiece" do
-    url "https://files.pythonhosted.org/packages/fc/ef/3751555d67daf9003384978f169d31c775cb5c7baf28633caaf1eb2b2b4d/sentencepiece-0.2.1-cp310-cp310-macosx_11_0_arm64.whl"
-    sha256 "60937c959e6f44159fdd9f56fbdd302501f96114a5ba436829496d5f32d8de3f"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "nltk" do
-    url "https://files.pythonhosted.org/packages/60/90/81ac364ef94209c100e12579629dc92bf7a709a84af32f8c551b02c07e94/nltk-3.9.2-py3-none-any.whl"
-    sha256 "1e209d2b3009110635ed9709a67a1a3e33a10f799490fa71cf4bec218c11c88a"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "tqdm" do
-    url "https://files.pythonhosted.org/packages/d0/30/dc54f88dd4a2b5dc8a0279bdd7270e735851848b762aeb1c1184ed1f6b14/tqdm-4.67.1-py3-none-any.whl"
-    sha256 "26445eca388f82e72884e0d580d5464cd801a3ea01e63e5601bdff9ba6a48de2"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "joblib" do
-    url "https://files.pythonhosted.org/packages/7b/91/984aca2ec129e2757d1e4e3c81c3fcda9d0f85b74670a094cc443d9ee949/joblib-1.5.3-py3-none-any.whl"
-    sha256 "5fc3c5039fc5ca8c0276333a188bbd59d6b7ab37fe6632daa76bc7f9ec18e713"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "threadpoolctl" do
-    url "https://files.pythonhosted.org/packages/32/d5/f9a850d79b0851d1d4ef6456097579a9005b31fea68726a4ae5f2d82ddd9/threadpoolctl-3.6.0-py3-none-any.whl"
-    sha256 "43a0b8fd5a2928500110039e43a5eed8480b918967083ea48dc3ab9f13c4a7fb"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "scikit-learn" do
-    url "https://files.pythonhosted.org/packages/1c/ce/af9d99533b24c55ff4e18d9b7b4d9919bbc6cd8f22fe7a7be01519a347d5/scikit_learn-1.7.2-cp310-cp310-macosx_12_0_arm64.whl"
-    sha256 "36749fb62b3d961b1ce4fedf08fa57a1986cd409eff2d783bca5d4b9b5fce51c"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "scipy" do
-    url "https://files.pythonhosted.org/packages/ea/b1/4deb37252311c1acff7f101f6453f0440794f51b6eacb1aad4459a134081/scipy-1.15.3-cp310-cp310-macosx_14_0_arm64.whl"
-    sha256 "aef683a9ae6eb00728a542b796f52a5477b78252edede72b8327a886ab63293f"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "pillow" do
-    url "https://files.pythonhosted.org/packages/cb/e9/4e58fb097fb74c7b4758a680aacd558810a417d1edaa7000142976ef9d2f/pillow-12.0.0-cp310-cp310-macosx_11_0_arm64.whl"
-    sha256 "1ac11e8ea4f611c3c0147424eae514028b5e9077dd99ab91e1bd7bc33ff145e1"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   resource "torchvision" do
-    url "https://files.pythonhosted.org/packages/f7/09/d51aadf8591138e08b74c64a6eb783630c7a31ca2634416277115a9c3a2b/torchvision-0.24.1-cp310-cp310-macosx_11_0_arm64.whl"
-    sha256 "ded5e625788572e4e1c4d155d1bbc48805c113794100d70e19c76e39e4d53465"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   # Modern sentence-transformers compatible with newer huggingface_hub
   resource "sentence-transformers" do
-    url "https://pypi.io/packages/py3/s/sentence-transformers/sentence_transformers-5.1.2-py3-none-any.whl"
-    sha256 "724ce0ea62200f413f1a5059712aff66495bc4e815a1493f7f9bca242414c333"
+    url "https://github.com/ashabbir/homebrew-savant/raw/main/savant-context-1.0.0-fix2.tar.gz"
+    sha256 "cd305724daaf55af205555199503ff3813cc67ec60da96845dc9309b5d3cbb41"
   end
 
   def install
