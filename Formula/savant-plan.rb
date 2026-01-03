@@ -8,10 +8,10 @@ class SavantPlan < Formula
   sha256 "0000000000000000000000000000000000000000000000000000000000000000"
   license "MIT"
 
-  depends_on "python@3.10"
+  depends_on "python@3.11"
 
   def install
-    venv = virtualenv_create(libexec, "python3.10")
+    venv = virtualenv_create(libexec, "python3.11")
     venv.pip_install buildpath
     (bin/"savant-plan").write_env_script libexec/"bin/savant-plan", {}
   end
@@ -29,4 +29,3 @@ class SavantPlan < Formula
     error_log_path var/"log/savant-plan.error.log"
   end
 end
-
