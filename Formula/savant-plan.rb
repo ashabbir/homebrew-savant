@@ -3,9 +3,9 @@ class SavantPlan < Formula
 
   desc "Standalone MCP server for planning sessions (add/revise steps)"
   homepage "https://github.com/ashabbir/savant-plan"
-  url "https://raw.githubusercontent.com/ashabbir/homebrew-savant/main/savant-plan-1.0.0.tar.gz"
+  url "https://raw.githubusercontent.com/ashabbir/homebrew-savant/2a573ccaeecb90caaadda10e6b30702dec73e746/savant-plan-1.0.0.tar.gz"
   version "1.0.0"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  sha256 "0a5b19df4d5247c451bbf21b8d99ed58194ae054256e470c00c54ede794070b2"
   license "MIT"
 
   depends_on "python@3.10"
