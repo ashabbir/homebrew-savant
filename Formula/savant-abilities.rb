@@ -3,9 +3,9 @@ class SavantAbilities < Formula
 
   desc "Abilities MCP server for persona + rules resolution"
   homepage "https://github.com/ashabbir/savant-abilities"
-  url "https://raw.githubusercontent.com/ashabbir/homebrew-savant/80c554c1812e98ac81ac65759e029ba8e47fde2e/savant-abilities-1.0.0.tar.gz"
+  url "https://raw.githubusercontent.com/ashabbir/homebrew-savant/d433d682452589c050d1ceef2baa23259e5748f2/savant-abilities-1.0.0.tar.gz"
   version "1.0.0"
-  sha256 "e3b66a2b7ba9cb3df6a4943ad40ac28f8f0774e43dd27c05335e21c544e64bc6"
+  sha256 "8cb3f6bb9641a62c5001eebd25ee4faf48511a62953f37a1b4b6bdf554905e4b"
   license "MIT"
 
   depends_on "python@3.10"
